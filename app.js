@@ -40,6 +40,7 @@ app.use(function(err, req, res, next) {
 
 var express = require("express");
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
 
 var routes = require("./routes/routes.js");
 
@@ -54,4 +55,8 @@ var server = app.listen(3000 , function(){
     console.log("Running on port", server.address().port);
 });
 
-module.exports = app;
+mongoose.connect("mongodb://127.0.0.1:27017/todo-list", {useNewUrlParser: true})
+.then(() => {console.log("Successfully connected")})
+.catch(() => {console.log("Error connecting to the Mongodb Database")})
+
+
