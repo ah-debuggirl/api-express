@@ -9,6 +9,19 @@ var appRouter = function (app){
     app.get("/users", function(req, res, next){
         userController.getUsers(req, res, next);
     });
+    app.post("/users", (req, res, next) => {
+        userController.createUser(req, res, next);
+    });
+    app.get("/users/:id", (req, res, next) => {
+        userController.getUser(req, res, next);
+    });
+    app.put("/users/:id", (req, res, next) => {
+        userController.updateUser(req, res, next);
+    });
+    app.delete("/users/:id", (req, res, next) => {
+        userController.deleteUser(req, res, next);
+    });
+
     app.get("/tasks", function(req, res, next){
         taskController.getTasks(req, res, next);
     });

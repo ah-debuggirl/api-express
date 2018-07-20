@@ -11,3 +11,14 @@ exports.getUsers = (req, res, next) => {
     });
 }
 
+exports.createUser = (req, res, next) => {
+  let newUser = new User(req.body);
+  newUser.save((err, user) => {
+  if (err) {
+    next(new Error(err));
+  }
+  else {
+    res.status(201).send(user);
+  }
+  });
+}
