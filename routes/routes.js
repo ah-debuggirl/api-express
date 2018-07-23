@@ -22,8 +22,23 @@ var appRouter = function (app){
         userController.deleteUser(req, res, next);
     });
 
+
     app.get("/tasks", function(req, res, next){
         taskController.getTasks(req, res, next);
+    });
+
+    app.post("/tasks", (req, res, next) => {
+        taskController.createTask(req, res, next);
+    });
+
+    app.get("/tasks/:id", (req, res, next) => {
+        userController.getUser(req, res, next);
+    });
+    app.put("/tasks/:id", (req, res, next) => {
+        userController.updateUser(req, res, next);
+    });
+    app.delete("/tasks/:id", (req, res, next) => {
+        userController.deleteUser(req, res, next);
     });
     
 }
