@@ -1,7 +1,7 @@
-var User = require('../models/user');
+var user = require('../models/user');
 
 exports.getUsers = (req, res, next) => {
-  User.find((err, users) => {
+  user.find((err, users) => {
   if (err) {
     next(new Error(err));
   }
@@ -25,7 +25,7 @@ exports.createUser = (req, res, next) => {
 
 exports.getUser = (req, res, next) => {
   let id = req.params.id
-  User.findOne({_id: id}, (err, user) => {
+  user.findOne({_id: id}, (err, user) => {
   if (err) {
     next(new Error(err));
   }
@@ -37,7 +37,7 @@ exports.getUser = (req, res, next) => {
 
 exports.updateUser = (req, res, next) => {
   let id = req.params.id;
-  User.findOne({_id: id}, (err, user) => {
+  user.findOne({_id: id}, (err, user) => {
   if (err) {
     next(new Error(err));
   }
@@ -54,7 +54,7 @@ exports.updateUser = (req, res, next) => {
 
 exports.deleteUser = (req, res, next) => {
   let id = req.params.id;
-  User.findOne({_id: id}, (err, user) => {
+  user.findOne({_id: id}, (err, user) => {
   if (err) {
     next(new Error(err));
   }

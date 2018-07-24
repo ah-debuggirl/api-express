@@ -1,7 +1,7 @@
-var Task = require('../models/task');
+var task = require('../models/task');
 
 exports.getTasks = (req, res, next) => {
-  Task.find((err, tasks) => {
+  task.find((err, tasks) => {
   if (err) {
     next(new Error(err));
   }
@@ -25,7 +25,7 @@ exports.createTask = (req, res, next) => {
 
 exports.getTask = (req, res, next) => {
   let id = req.params.id
-  Task.findOne({_id: id}, (err, task) => {
+  task.findOne({_id: id}, (err, task) => {
   if (err) {
     next(new Error(err));
   }
@@ -37,7 +37,7 @@ exports.getTask = (req, res, next) => {
 
 exports.updateTask = (req, res, next) => {
   let id = req.params.id;
-  Task.findOne({_id: id}, (err, task) => {
+  task.findOne({_id: id}, (err, task) => {
   if (err) {
     next(new Error(err));
   }
@@ -53,7 +53,7 @@ exports.updateTask = (req, res, next) => {
 
 exports.deleteTask = (req, res, next) => {
   let id = req.params.id;
-  Task.findOne({_id: id}, (err, task) => {
+  task.findOne({_id: id}, (err, task) => {
   if (err) {
     next(new Error(err));
   }
