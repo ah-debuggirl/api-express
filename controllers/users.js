@@ -12,7 +12,7 @@ exports.getUsers = (req, res, next) => {
 }
 
 exports.createUser = (req, res, next) => {
-  let newUser = new User(req.body);
+  let newUser = new user(req.body);
   newUser.save((err, user) => {
   if (err) {
     next(new Error(err));
@@ -42,10 +42,10 @@ exports.updateUser = (req, res, next) => {
     next(new Error(err));
   }
   else {
-    let updatedUser = new User(req.body);
-    user.username = updatedUser.username;
-    user.first_name = updatedUser.first_name;
-    user.last_name = updatedUser.last_name;
+    let updatedUser = new user(req.body);
+    user.userName = updatedUser.userName;
+    user.firstName = updatedUser.firstName;
+    user.lastName = updatedUser.lastName;
     user.save();
     res.status(200).send(user);
   }

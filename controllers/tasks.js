@@ -12,7 +12,7 @@ exports.getTasks = (req, res, next) => {
 }
 
 exports.createTask = (req, res, next) => {
-  let newTask = new Task(req.body);
+  let newTask = new task(req.body);
   newTask.save((err, task) => {
   if (err) {
     next(new Error(err));
@@ -42,7 +42,7 @@ exports.updateTask = (req, res, next) => {
     next(new Error(err));
   }
   else {
-    let updatedTask = new Task(req.body);
+    let updatedTask = new task(req.body);
     task.title = updatedTask.title;
     task.description = updatedTask.description;
     task.save();
