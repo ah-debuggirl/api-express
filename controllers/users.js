@@ -37,15 +37,15 @@ exports.getUser = (req, res, next) => {
 
 exports.updateUser = (req, res, next) => {
   let id = req.params.id;
-  user.findOne({_id: id}, (err, user) => {
+  User.findOne({_id: id}, (err, user) => {
   if (err) {
     next(new Error(err));
   }
   else {
     let updatedUser = new user(req.body);
-    user.userName = updatedUser.userName;
-    user.firstName = updatedUser.firstName;
-    user.lastName = updatedUser.lastName;
+    user.username = updatedUser.username;
+    user.first_name = updatedUser.first_name;
+    user.last_name = updatedUser.last_name;
     user.save();
     res.status(200).send(user);
   }
