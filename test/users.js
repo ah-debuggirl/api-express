@@ -99,4 +99,47 @@ describe('users', () => {
     });
 
 
+    describe('/UPDATE/:id user', () => {
+        it('it should UPDATE an user given the id', (done) => {
+            let updatedUser = new user({
+                userName: 'Arnulfo',
+                firstName: 'Montes',
+                lastName: 'del Campo'
+            });
+            updatedUser.save((err, res) => {
+                chai.request('http://localhost:3000')
+                .put('/users/' + updatedUser._id)
+                .send({
+                    userName: 'Pafnuncio',
+                    firstName: 'Pérez',
+                    lastName: 'al Cuadrado'
+                })
+                .end((err, res) => {
+                    res.should.have.status(500)
+                    res.body.should.be.a('object');
+                done();
+                });
+            });
+        });
+    });
+
+    describe('/DELETE/:id user', () => {
+        it('it should DELETE an user given the id', (done) => {
+            let newUser = new user({
+                userName: 'Arnulfo',
+                firstName: 'Montes',
+                lastName: 'de Oca'
+            });
+            newUser.save((err, newUser) => {
+                chai.request('http://localhost:3000')
+                .delete('/users/' + newUser._id)
+                .end((err, res) => {
+                    res.should.have.status(204);
+                done();
+                });
+            });
+        });
+    });
+        
+
 });

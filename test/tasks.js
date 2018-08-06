@@ -33,6 +33,24 @@ describe('tasks', () => {
         });
     });
 
+    describe('/POST a new task', () => {
+        it('it should POST a task', (done) => {
+            let newTask = new task({
+                title: 'tarea',
+                description: 'Realizar tarea'
+            });
+            
+            chai.request('http://localhost:3000')
+            .post('/tasks')
+            .send(newTask)
+            .end((err, res) => {
+                res.should.have.status(201);
+                res.body.should.be.a('object');
+            done();
+            });
+        });
+    });
+
     describe('/GET/:id task', () => {
         it('it should GET a task by the given id', (done) => {
             let newTask = new task({
@@ -51,4 +69,66 @@ describe('tasks', () => {
             });
         });
     });
+
+    describe('/PUT/:id task', () => {
+        it('it should UPDATE a task given the id', (done) => {
+            let newTask = new task({
+                title: 'Tarea',
+                description: 'Realizar nueva tarea'
+            });
+            newTask.save((err, res) => {
+                chai.request('http://localhost:3000')
+                .put('/users/' + newTask._id)
+                .send({
+                    title: 'Nueva tarea',
+                description: 'Realizar otra tarea'
+                })
+                .end((err, res) => {
+                    res.should.have.status(500)
+                    res.body.should.be.a('object');
+                done();
+                });
+            });
+        });
+    });
+
+    describe('/UPDATE/:id task', () => {
+        it('it should UPDATE a task given the id', (done) => {
+            let updatedTask = new task({
+                title: 'Saludar',
+                description: 'Buenas noches'
+            });
+            updatedTask.save((err, res) => {
+                chai.request('http://localhost:3000')
+                .put('/tasks/' + updatedTask._id)
+                .send({
+                    title: 'Saludar',
+                    description: 'Buenas noches'
+                })
+                .end((err, res) => {
+                    res.should.have.status(500)
+                    res.body.should.be.a('object');
+                done();
+                });
+            });
+        });
+    });
+
+    describe('/DELETE/:id task', () => {
+        it('it should DELETE a task given the id', (done) => {
+            let deletedTask = new task({
+                title: 'Tarea',
+                description: 'Realizar nueva tarea'
+            });
+            deletedTask.save((err, deletedTask) => {
+                chai.request('http://localhost:3000')
+                .delete('/tasks/' + deletedTask._id)
+                .end((err, res) => {
+                    res.should.have.status(204);
+                done();
+                });
+            });
+        });
+    });
+
 });
