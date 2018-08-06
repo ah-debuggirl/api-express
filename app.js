@@ -12,6 +12,7 @@ app.use(function(req, res, next) {
   res.header("access-control-allow-origin", "http://localhost:4200");
   res.header("access-control-allow-headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("access-control-allow-methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Cache-Control", "no-cache");
   next();
 });
 
