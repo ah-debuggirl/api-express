@@ -9,6 +9,8 @@ let chaiHttp = require('chai-http');
 let server = require('../app');
 let should = chai.should();
 
+chai.use(chaiHttp);
+
 //Our parent block
 
 describe('tasks', () => {
@@ -57,7 +59,7 @@ describe('tasks', () => {
                 title: 'Tarea',
                 description: 'Realizar nueva tarea'
             });
-            newTask.save((err, res) => {
+            newTask.save((err, newTask) => {
                 chai.request('http://localhost:3000')
                 .get('/tasks/' + newTask._id)
                 .send(newTask)
@@ -76,15 +78,15 @@ describe('tasks', () => {
                 title: 'Tarea',
                 description: 'Realizar nueva tarea'
             });
-            newTask.save((err, res) => {
+            newTask.save((err, newTask) => {
                 chai.request('http://localhost:3000')
-                .put('/users/' + newTask._id)
+                .put('/tasks/' + newTask._id)
                 .send({
                     title: 'Nueva tarea',
                 description: 'Realizar otra tarea'
                 })
                 .end((err, res) => {
-                    res.should.have.status(500)
+                    res.should.have.status(200)
                     res.body.should.be.a('object');
                 done();
                 });
@@ -98,7 +100,7 @@ describe('tasks', () => {
                 title: 'Saludar',
                 description: 'Buenas noches'
             });
-            updatedTask.save((err, res) => {
+            updatedTask.save((err, updatedTask) => {
                 chai.request('http://localhost:3000')
                 .put('/tasks/' + updatedTask._id)
                 .send({
@@ -106,7 +108,7 @@ describe('tasks', () => {
                     description: 'Buenas noches'
                 })
                 .end((err, res) => {
-                    res.should.have.status(500)
+                    res.should.have.status(200)
                     res.body.should.be.a('object');
                 done();
                 });

@@ -61,7 +61,7 @@ describe('users', () => {
                 firstName: 'Montes',
                 lastName: 'de Oca'
             });
-            newUser.save((err, res) => {
+            newUser.save((err, newUser) => {
                 chai.request('http://localhost:3000')
                 .get('/users/' + newUser._id)
                 .send(newUser)
@@ -81,7 +81,7 @@ describe('users', () => {
                 firstName: 'Montes',
                 lastName: 'de Oca'
             });
-            newUser.save((err, res) => {
+            newUser.save((err, newUser) => {
                 chai.request('http://localhost:3000')
                 .put('/users/' + newUser._id)
                 .send({
@@ -90,7 +90,7 @@ describe('users', () => {
                     lastName: 'al Cuadrado'
                 })
                 .end((err, res) => {
-                    res.should.have.status(500)
+                    res.should.have.status(200)
                     res.body.should.be.a('object');
                 done();
                 });
@@ -106,7 +106,7 @@ describe('users', () => {
                 firstName: 'Montes',
                 lastName: 'del Campo'
             });
-            updatedUser.save((err, res) => {
+            updatedUser.save((err, newUser) => {
                 chai.request('http://localhost:3000')
                 .put('/users/' + updatedUser._id)
                 .send({
@@ -115,7 +115,7 @@ describe('users', () => {
                     lastName: 'al Cuadrado'
                 })
                 .end((err, res) => {
-                    res.should.have.status(500)
+                    res.should.have.status(200)
                     res.body.should.be.a('object');
                 done();
                 });
