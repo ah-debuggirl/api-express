@@ -37,29 +37,29 @@ exports.getUser = (req, res, next) => {
 
 exports.updateUser = (req, res, next) => {
   let id = req.params.id;
-  User.findOne({_id: id}, (err, user) => {
+  User.findOne({_id: id}, (err, newuser) => {
   if (err) {
     next(new Error(err));
   }
   else {
     let updatedUser = new user(req.body);
-    user.username = updatedUser.username;
-    user.first_name = updatedUser.first_name;
-    user.last_name = updatedUser.last_name;
-    user.save();
-    res.status(200).send(user);
+    newuser.username = updatedUser.username;
+    newuser.first_name = updatedUser.first_name;
+    newuser.last_name = updatedUser.last_name;
+    newuser.save();
+    res.status(200).send(newuser);
   }
   });
 }
 
 exports.deleteUser = (req, res, next) => {
   let id = req.params.id;
-  user.findOne({_id: id}, (err, user) => {
+  user.findOne({_id: id}, (err, newuser) => {
   if (err) {
     next(new Error(err));
   }
   else {
-    user.remove();
+    newuser.remove();
     res.status(204).send("Deleted");
   }
   });

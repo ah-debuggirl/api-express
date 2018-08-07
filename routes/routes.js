@@ -32,13 +32,13 @@ var appRouter = function (app){
     });
 
     app.get("/tasks/:id", (req, res, next) => {
-        userController.getUser(req, res, next);
+        taskController.getTask(req, res, next);
     });
     app.put("/tasks/:id", (req, res, next) => {
-        userController.updateUser(req, res, next);
+        taskController.updateTask(req, res, next);
     });
     app.delete("/tasks/:id", (req, res, next) => {
-        userController.deleteUser(req, res, next);
+        taskController.deleteTask(req, res, next);
     });
     
 }

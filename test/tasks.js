@@ -94,28 +94,6 @@ describe("tasks", () => {
         });
     });
 
-    describe("/UPDATE/:id task", () => {
-        it("it should UPDATE a task given the id", (done) => {
-            let newTask = new task({
-                title: "Saludar",
-                description: "Buenas noches"
-            });
-            newTask.save((err, newTask) => {
-                chai.request("http://localhost:3000")
-                .put("/tasks/" + newTask._id)
-                .send({
-                    title: "Saludar",
-                    description: "Buenas noches"
-                })
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a("object");
-                done();
-                });
-            });
-        });
-    });
-
     describe("/DELETE/:id task", () => {
         it("it should DELETE a task given the id", (done) => {
             let newTask = new task({

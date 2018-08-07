@@ -37,28 +37,28 @@ exports.getTask = (req, res, next) => {
 
 exports.updateTask = (req, res, next) => {
   let id = req.params.id;
-  task.findOne({_id: id}, (err, task) => {
+  task.findOne({_id: id}, (err, newtask) => {
   if (err) {
     next(new Error(err));
   }
   else {
     let updatedTask = new task(req.body);
-    task.title = updatedTask.title;
-    task.description = updatedTask.description;
-    task.save();
-    res.status(200).send(task);
+    newtask.title = updatedTask.title;
+    newtask.description = updatedTask.description;
+    newtask.save();
+    res.status(200).send(newtask);
   }
   });
 }
 
 exports.deleteTask = (req, res, next) => {
   let id = req.params.id;
-  task.findOne({_id: id}, (err, task) => {
+  task.findOne({_id: id}, (err, newtask) => {
   if (err) {
     next(new Error(err));
   }
   else {
-    task.remove();
+    newtask.remove();
     res.status(204).send("Deleted");
   }
   });

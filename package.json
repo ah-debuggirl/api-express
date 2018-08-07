@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "test": "mocha",
-    "start": "node ./bin/www"
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

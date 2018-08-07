@@ -42,14 +42,13 @@ describe("users", () => {
                 firstName: "Montes",
                 lastName: "de Oca"
             });
-            
             chai.request("http://localhost:3000")
-            .post("/users")
-            .send(newUser)
-            .end((err, res) => {
-                res.should.have.status(201);
-                res.body.should.be.a("object");
-            done();
+                .post("/users")
+                .send(newUser)
+                .end((err, res) => {
+                    res.should.have.status(201);
+                    res.body.should.be.a("object");
+                    done();
             });
         });
     });
@@ -74,51 +73,26 @@ describe("users", () => {
         });
     });
 
-    describe("/PUT/:id user", () => {
-        it("it should UPDATE an user given the id", (done) => {
+    describe('/PUT/:id user', () => {
+        it('it should UPDATE an user given the id', (done) => {
             let newUser = new user({
-                userName: "Arnulfo",
-                firstName: "Montes",
-                lastName: "de Oca"
-            });
-            newUser.save((err, newUser) => {
-                chai.request("http://localhost:3000")
-                .put("/users/" + newUser._id)
-                .send({
-                    userName: "Pafnuncio",
-                    firstName: "Pérez",
-                    lastName: "al Cuadrado"
-                })
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a("object");
-                done();
-                });
-            });
-        });
-    });
-
-
-    describe("/UPDATE/:id user", () => {
-        it("it should UPDATE an user given the id", (done) => {
-            let newUser = new user({
-                userName: "Arnulfo",
-                firstName: "Montes",
-                lastName: "del Campo"
-            });
-            newUser.save((err, newUser) => {
-                chai.request("http://localhost:3000")
-                .put("/users/" + newUser._id)
-                .send({
-                    userName: "Pafnuncio",
-                    firstName: "Pérez",
-                    lastName: "al Cuadrado"
-                })
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a("object");
-                done();
-                });
+                userName: "fulanito",
+                firstName: "Fulano",
+                lastName: "de Tal"
+              });
+          newUser.save((err, newUser) => {
+                  chai.request('http://localhost:3000')
+                  .put('/users/' + newUser._id)
+                  .send({
+                    userName: "perengano",
+                    firstName: "Perengano",
+                    lastName: "de Tal"
+                  })
+                  .end((err, res) => {
+                      res.should.have.status(200);
+                      res.body.should.be.a('object');
+                    done();
+                  });
             });
         });
     });
